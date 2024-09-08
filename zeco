@@ -1,0 +1,20 @@
+#!/bin/bash
+
+ZED_CONFIG="$HOME/.var/app/dev.zed.Zed/config/zed"
+
+case "$1" in
+push)
+	date_time=$(date "+%d/%m/%Y %H:%M")
+	git -C $ZED_CONFIG add .
+	git -C $ZED_CONFIG commit -m "sync config $date_time"
+	git -C $ZED_CONFIG push
+	;;
+pull)
+	git -C $ZED_CONFIG pull
+	down
+	;;
+*)
+	echo "Usage: $0 {pull|push}"
+	exit 1
+	;;
+esac
