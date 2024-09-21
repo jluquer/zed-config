@@ -5,7 +5,7 @@
     "bindings": {
       "alt-j": "editor::MoveLineDown",
       "alt-k": "editor::MoveLineUp",
-      "ctrl-j": "workspace::ToggleBottomDock"
+      "alt-i": "workspace::ToggleBottomDock"
     }
   },
   // INSERT
@@ -17,13 +17,35 @@
   },
   // NORMAL
   {
-    "context": "vim_mode == normal",
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
+      // Ctrl jklk to move between panes
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      // Controls
       "space e": "workspace::ToggleRightDock",
       "space q": "pane::CloseActiveItem",
-      "space l f": "editor::Format",
       "space f": "file_finder::Toggle",
-      "tab": "tab_switcher::Toggle"
+      "tab": "tab_switcher::Toggle",
+      // Git prev/next hunk
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPrevHunk",
+      // +LSP
+      "space l f": "editor::Format",
+      "space l a": "editor::ToggleCodeActions",
+      "space .": "editor::ToggleCodeActions",
+      "space l r": "editor::Rename",
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToDefinitionSplit",
+      "g i": "editor::GoToImplementation",
+      "g I": "editor::GoToImplementationSplit",
+      "g t": "editor::GoToTypeDefinition",
+      "g T": "editor::GoToTypeDefinitionSplit",
+      "g r": "editor::FindAllReferences",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPrevDiagnostic"
     }
   },
   // VISUAL
@@ -43,6 +65,52 @@
     "bindings": {
       // put key-bindings here (in addition to above) if you want them to work when no editor exists
       "space f": "file_finder::Toggle"
+    }
+  },
+  // File panel (netrw)
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "A": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "c": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      // Close project panel as project file panel on the right
+      "q": "workspace::ToggleRightDock",
+      // Navigate between panel
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
+    }
+  },
+  // Panel nagivation
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-w h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-w l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-w k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-w j": ["workspace::ActivatePaneInDirection", "Down"]
+    }
+  },
+  // Toggle terminal
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-i": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
     }
   }
 ]
