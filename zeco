@@ -12,6 +12,9 @@ push)
 pull)
 	git -C $ZED_CONFIG pull
 	;;
+status)
+	git -C $ZED_CONFIG status
+	;;
 *)
 	echo "Usage: $0 {pull|push}"
 	exit 1
