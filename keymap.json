@@ -5,7 +5,9 @@
     "bindings": {
       "alt-j": "editor::MoveLineDown",
       "alt-k": "editor::MoveLineUp",
-      "alt-i": "workspace::ToggleBottomDock"
+      "alt-i": "workspace::ToggleBottomDock",
+      "ctrl-x": "editor::Cut",
+      "ctrl-c": "editor::Copy"
     }
   },
   // INSERT
@@ -29,6 +31,9 @@
       "space q": "pane::CloseActiveItem",
       "space f": "file_finder::Toggle",
       "tab": "tab_switcher::Toggle",
+      // Open markdown preview
+      "space m p": "markdown::OpenPreview",
+      "space m P": "markdown::OpenPreviewToTheSide",
       // Git prev/next hunk
       "] h": "editor::GoToHunk",
       "[ h": "editor::GoToPrevHunk",
