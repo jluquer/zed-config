@@ -7,7 +7,27 @@
       "alt-k": "editor::MoveLineUp",
       "alt-i": "workspace::ToggleBottomDock",
       "ctrl-x": "editor::Cut",
-      "ctrl-c": "editor::Copy"
+      "ctrl-c": "editor::Copy",
+      "ctrl-a": "editor::SelectAll"
+    }
+  },
+  // normal & visual mode
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      // Git
+      "space g h d": "editor::ToggleHunkDiff",
+      "space g h r": "editor::RevertSelectedHunks",
+      // Controls
+      "space e": "workspace::ToggleRightDock",
+      "space q": "pane::CloseActiveItem",
+      "space f": "file_finder::Toggle",
+      "tab": "tab_switcher::Toggle",
+      "shift-tab": ["tab_switcher::Toggle", { "select_last": true }],
+      "space k s": "zed::OpenKeymap",
+      // Open markdown preview
+      "space m p": "markdown::OpenPreview",
+      "space m P": "markdown::OpenPreviewToTheSide"
     }
   },
   // INSERT
@@ -26,18 +46,10 @@
       "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
       "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
       "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
-      // Controls
-      "space e": "workspace::ToggleRightDock",
-      "space q": "pane::CloseActiveItem",
-      "space f": "file_finder::Toggle",
-      "tab": "tab_switcher::Toggle",
-      // Open markdown preview
-      "space m p": "markdown::OpenPreview",
-      "space m P": "markdown::OpenPreviewToTheSide",
       // Git prev/next hunk
       "] h": "editor::GoToHunk",
       "[ h": "editor::GoToPrevHunk",
-      // +LSP
+      // LSP
       "space l f": "editor::Format",
       "space l a": "editor::ToggleCodeActions",
       "space .": "editor::ToggleCodeActions",
